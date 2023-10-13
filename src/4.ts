@@ -8,7 +8,7 @@
 
 class Key {
     constructor(private signature: number) {
-        // signature = Math.random();
+        signature = Math.random();
     };
     
     getSignature(): number {
@@ -35,12 +35,10 @@ class Person {
 абстрактний метод OpenDoor, який приймає об'єкт класу Key.
 */
 abstract class House {
-   protected door: "true" | "false";
-   protected key: Key;
-   protected tenants: string[] = [];
-
-   comeIn(person: Person) {
-       if (this.door === "true") {
+    constructor(protected door: boolean = false, protected key: Key, protected tenants: string[] = []) {};
+   
+    comeIn(person: Person) {
+       if (this.door) {
            this.tenants.push(person);
     }
   }
@@ -54,10 +52,10 @@ abstract class House {
 
 class MyHouse extends House {
     openDoor(key: Key) {
-        if (key === person.getKey()) {
-          return this.door = "true"  
+        if (key.getSignature() === this.getKey()) {
+          return this.door = true  
         }
-        return this.door = "false";
+        return this.door = false;
     };
 }
 
