@@ -52,7 +52,7 @@ abstract class House {
 
 class MyHouse extends House {
     openDoor(key: Key) {
-        if (key.getSignature() === this.getKey()) {
+        if (key.getSignature() === this.key.getSignature()) {
           return this.door = true  
         }
         return this.door = false;
@@ -60,9 +60,9 @@ class MyHouse extends House {
 }
 
 /*Після реалізації всіх класів створіть об'єкти для кожного класу та спробуйте відтворити сценарій, в якому людина приходить додому.*/
-const key = new Key(Math.random());
+const key = new Key();
 
-const house = new MyHouse();
+const house = new MyHouse(key);
 const person = new Person(key);
 
 house.openDoor(person.getKey());
