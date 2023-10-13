@@ -35,13 +35,13 @@ class Person {
 абстрактний метод OpenDoor, який приймає об'єкт класу Key.
 */
 abstract class House {
-    door: "true" | "false";
-    key: Key;
-    tenants: string[] = [];
+   protected door: "true" | "false";
+   protected key: Key;
+   protected tenants: string[] = [];
 
    comeIn(person: Person) {
        if (this.door === "true") {
-           this.tenants.push(person.toString());
+           this.tenants.push(person);
     }
   }
     abstract openDoor(key: Key): void;
@@ -54,7 +54,7 @@ abstract class House {
 
 class MyHouse extends House {
     openDoor(key: Key) {
-        if (key === this.key) {
+        if (key === person.getKey()) {
           return this.door = "true"  
         }
         return this.door = "false";
